@@ -2,6 +2,9 @@ class TowerOfHanoi
 
   attr_accessor :tower_height, :goal_tower, :tower_a, :tower_b, :tower_c
 
+
+  ##--SET UP GAME--##
+
   def initialize(height)
     #create tower height
     @tower_a = (1..height).to_a.reverse
@@ -20,6 +23,10 @@ class TowerOfHanoi
     puts "3) No disk may be placed on top of a smaller disk."
   end
 
+
+
+  ##--USER INPUT CHECKS--##
+
   def quit
     #end game
     if game_won?
@@ -31,8 +38,7 @@ class TowerOfHanoi
     exit
   end
 
-  def game_won?
-    #test if won
+  def game_won?             #test if won
     (@tower_c == @goal_tower || @tower_b == @goal_tower) ? true : false
   end
 
@@ -46,7 +52,7 @@ class TowerOfHanoi
     pass = false
     if input == "q"
       quit
-    elsif towers.include? input[0] && towers.include? input[2]
+    elsif (towers.include? input[0]) && (towers.include? input[2])
       pass = true
     else
       puts "I do not understand. #{@instruction}"
@@ -54,15 +60,17 @@ class TowerOfHanoi
     pass
   end
 
-  def valid_move?(directions)
-    #check if disk moved is smaller than the one it's stacked on
-    if #valid move
+  def valid_move?(directions)         #check if disk moved is smaller than the one it's stacked on
+    if 1 #valid move
       return true
     else
       rules
       return false
     end
   end
+
+
+  ##--GAME PLAY--##
 
   def move_disk(move)
 
@@ -81,7 +89,7 @@ class TowerOfHanoi
     render
     until game_won?
       puts "Your move:"
-      move = gets.chomp
+      move = gets.downcase.chomp
       if valid_input?(move) && valid_move?(move)
         move_disk(move)
         render
