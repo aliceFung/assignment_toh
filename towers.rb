@@ -14,7 +14,7 @@ class TowerOfHanoi
 
   def introduction
     @instruction = "Enter where you'd like to move the top disk from and to in the format: a,b. Enter 'q' to quit."
-    puts "Welcome to Tower of Hanoi!" + "/n @instruction"
+    puts "Welcome to Tower of Hanoi!" + "\n#{@instruction}"
   end
 
   def rules
