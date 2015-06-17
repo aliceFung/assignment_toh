@@ -100,13 +100,13 @@ class TowerOfHanoi
 
     (@goal_tower.size - 1).downto (0) do |row|
       if @tower_a[row].nil?
-        print " " * space
+        print " " * (space + space/4)
       else
         print "+" * @tower_a[row] + " " * (space + 1 - @tower_a[row])
       end
 
       if @tower_b[row].nil?
-        print " " * space
+        print " " * (space + space/4)
       else
         print "+" * @tower_b[row] + " " * (space + 1 - @tower_b[row])
       end
@@ -114,11 +114,11 @@ class TowerOfHanoi
       if @tower_c[row].nil?
         print " " * space
       else
-        print "+" * @tower_c[row] + " " * (space + 1 - @tower_c[row])
+        print "+" * @tower_c[row]
       end
       print "\n"
     end
-    puts "A" + " " * space + "B" + " " * space + "C" + " " * space
+    puts "A" + " " * space + "B" + " " * space + "C"
 
   end
 
