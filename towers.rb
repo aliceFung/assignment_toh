@@ -59,10 +59,10 @@ class TowerOfHanoi
     end
   end
 
-  def valid_input?(input)
-    #check if user input is valid & quit option
+  def valid_input?(input)        #check if user input is valid & quit option
     towers = ["a", "b", "c"]
     good_input = false           #whether input is valid
+
     if input == "q"
       quit
     elsif (towers.include? input[0]) && (towers.include? input[2]) && input.length == 3
@@ -70,6 +70,7 @@ class TowerOfHanoi
     else
       puts "I do not understand. The towers are a, b, and c. #{@instruction}"
     end
+
     good_input
   end
 
@@ -118,7 +119,7 @@ class TowerOfHanoi
       end
       print "\n"
     end
-    puts "A" + " " * space + "B" + " " * space + "C"
+    puts "A" + " " * space + "B" + " " * (space + space/4) + "C"
 
   end
 
