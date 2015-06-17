@@ -1,6 +1,6 @@
 class TowerOfHanoi
 
-  attr_accessor :tower_height, :goal_tower, :tower_a, :tower_b, :tower_c
+  attr_accessor :tower_height, :goal_tower, :tower_a, :tower_b, :tower_c, :from, :to
 
 
   ##--SET UP GAME--##
@@ -23,18 +23,24 @@ class TowerOfHanoi
     puts "3) No disk may be placed on top of a smaller disk."
   end
 
+  def tower_choice(input_letter)
+    case input_letter
+    when "a"
+      return @tower_a
+    when "b"
+      return @tower_b
+    when "c"
+      return @tower_c
+    end
+  end
+
 
 
   ##--USER INPUT CHECKS--##
 
   def quit
     #end game
-    if game_won?
-      render
-      puts "Congratulations! You did it!"
-    else
-      puts "Aww. Ok, goodbye."
-    end
+    puts "Aww. Ok, goodbye."
     exit
   end
 
@@ -49,38 +55,42 @@ class TowerOfHanoi
   def valid_input?(input)
     #check if user input is valid & quit option
     towers = ["a", "b", "c"]
-    pass = false
+    check = false           #whether input is valid
     if input == "q"
       quit
     elsif (towers.include? input[0]) && (towers.include? input[2])
-      pass = true
+      check = true
     else
-      puts "I do not understand. #{@instruction}"
+      puts "I do not understand. The towers are a, b, and c. #{@instruction}"
     end
-    pass
+    check
   end
 
-  def valid_move?(directions)         #check if disk moved is smaller than the one it's stacked on
-    if 1 #valid move
-      return true
-    else
-      rules
-      return false
-    end
+  def valid_move?(move)         #check if disk moved is smaller than the one it's stacked on
+    #disk_size = move[0].tower_choice[-1]
+    #destination_disk_size = move[2].tower_choice[-1]
+    #if origin < destination #valid move
+    #  return true
+    #else
+    #  rules
+    #  return false
+    #end
+
+    true
   end
 
 
   ##--GAME PLAY--##
 
   def move_disk(move)
-
-    #game move
-
+    tower_choice(move[2]) << tower_choice(move[0]).pop
   end
 
   def render
     #prints current state of game board
-
+    print @tower_a
+    print @tower_b
+    print @tower_c
   end
 
   def play #game loop w/ quit option
@@ -97,6 +107,7 @@ class TowerOfHanoi
         puts @instruction
       end
     end
+    puts "Congratulations! You did it!"
   end
 
 end
