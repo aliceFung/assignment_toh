@@ -95,10 +95,31 @@ class TowerOfHanoi
     @to << @from.pop
   end
 
-  def render          #prints current state of game board
-    print @tower_a
-    print @tower_b
-    print @tower_c
+  def render          #prints current state of tower
+    space = @goal_tower.size * 2
+
+    (@goal_tower.size - 1).downto (0) do |row|
+      if @tower_a[row].nil?
+        print " " * space
+      else
+        print "+" * @tower_a[row] + " " * (space + 1 - @tower_a[row])
+      end
+
+      if @tower_b[row].nil?
+        print " " * space
+      else
+        print "+" * @tower_b[row] + " " * (space + 1 - @tower_b[row])
+      end
+
+      if @tower_c[row].nil?
+        print " " * space
+      else
+        print "+" * @tower_c[row] + " " * (space + 1 - @tower_c[row])
+      end
+      print "\n"
+    end
+    puts "A" + " " * space + "B" + " " * space + "C" + " " * space
+
   end
 
   def play            #game loop w/ quit option
@@ -120,5 +141,5 @@ class TowerOfHanoi
 
 end
 
-test = TowerOfHanoi.new(3)
+test = TowerOfHanoi.new(5)
 test.play
