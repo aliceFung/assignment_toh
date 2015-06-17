@@ -97,26 +97,29 @@ class TowerOfHanoi
   end
 
   def render          #prints current state of tower
+    board = [@tower_a, @tower_b, @tower_c]
     space = @goal_tower.size * 2
 
     (@goal_tower.size - 1).downto (0) do |row|
-      if @tower_a[row].nil?
-        print " " * (space + space/4)
-      else
-        print "+" * @tower_a[row] + " " * (space + 1 - @tower_a[row])
+      board.each do |tower|
+        if tower[row].nil?
+          print " " * (space + space/4)
+        else
+          print "+" * tower[row] + " " * (space + 1 - tower[row])
+        end
       end
 
-      if @tower_b[row].nil?
-        print " " * (space + space/4)
-      else
-        print "+" * @tower_b[row] + " " * (space + 1 - @tower_b[row])
-      end
+      #if @tower_b[row].nil?
+       # print " " * (space + space/4)
+      #else
+        #print "+" * @tower_b[row] + " " * (space + 1 - @tower_b[row])
+      #end
 
-      if @tower_c[row].nil?
-        print " " * space
-      else
-        print "+" * @tower_c[row]
-      end
+      #if @tower_c[row].nil?
+      #  print " " * space
+      #else
+      #  print "+" * @tower_c[row]
+      #end
       print "\n"
     end
     puts "A" + " " * space + "B" + " " * (space + space/4) + "C"
