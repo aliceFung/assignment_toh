@@ -65,7 +65,7 @@ class TowerOfHanoi
 
     if input == "q"
       quit
-    elsif (towers.include? input[0]) && (towers.include? input[2]) && input.length == 3
+    elsif (towers.include? input[0]) && (towers.include? input[2]) && input.length == 3 && input[1] == ","
       good_input = true
     else
       puts "I do not understand. The towers are a, b, and c. #{@instruction}"
@@ -104,16 +104,16 @@ class TowerOfHanoi
 
       board.each do |tower|
         if tower[row].nil?
-          print " " * (space + space/4)
+          print " " * (space)
         else
-          print "+" * tower[row] + " " * (space + 1 - tower[row])
+          print ("+" * tower[row]).ljust(space , " ")
         end
       end
 
       print "\n"
     end
 
-    puts "A" + " " * space + "B" + " " * (space + space/4) + "C"
+    puts "A".ljust(space, " ") + "B".ljust(space, " ") + "C"
 
   end
 
@@ -136,5 +136,5 @@ class TowerOfHanoi
 
 end
 
-test = TowerOfHanoi.new(5)
+test = TowerOfHanoi.new(6)
 test.play
